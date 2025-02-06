@@ -1,0 +1,29 @@
+version: "3"
+services:
+  server:
+    build: ./server
+    networks:
+      - mitm_net
+    ports:
+      - "5000:5000"
+
+  mitm:
+    build: ./mitm
+    networks:
+      - mitm_net
+    ports:
+      - "8080:8080"
+    stdin_open: true  
+    tty: true         
+
+  client:
+    build: ./client
+    networks:
+      - mitm_net
+    depends_on:
+      - mitm
+      - server
+
+networks:
+  mitm_net:
+    driver: bridge
