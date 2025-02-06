@@ -28,7 +28,7 @@ login_page = """
 
 @app.route('/login', methods=['GET', 'POST'])  
 def login():
-    message = None  # Initialize `message` to prevent errors
+    message = None  
     if request.method == 'POST':
         username = request.form.get('username')
         password = request.form.get('password')
